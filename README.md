@@ -50,4 +50,4 @@ Code snippet
   year      = {2026},
   address   = {Helsinki, Finland},
   month     = {November}
-}
+} 

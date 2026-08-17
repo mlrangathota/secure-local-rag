@@ -5,9 +5,9 @@ This repository contains the core simulation framework and reference implementat
 The proposed framework enables completely isolated, high-performance semantic search and text analysis across sensitive corporate documents without relying on external cloud endpoints or public APIs.
 
 ## Key Features
-*   **Complete Data Isolation:** All operations are executed completely locally inside the on-premise network environment.
-*   **8-Bit Model Quantization:** Drastically drops GPU memory parameters using INT8 schemas to run heavy 8B models on ordinary consumer grade graphics hardware[cite: 16].
-*   **Deterministic RAG Guardrails:** Enforces explicit context validation to eliminate model hallucinations and generate factual, reference-grounded responses[cite: 16].
+* **Complete Data Isolation:** All operations are executed completely locally inside the on-premise network environment.
+* **8-Bit Model Quantization:** Drastically drops GPU memory parameters using INT8 schemas to run heavy 8B models on ordinary consumer grade graphics hardware.
+* **Deterministic RAG Guardrails:** Enforces explicit context validation to eliminate model hallucinations and generate factual, reference-grounded responses.
 
 ## Project Directory Structure
 ```text
@@ -17,32 +17,34 @@ The proposed framework enables completely isolated, high-performance semantic se
 │   ├── __init__.py
 │   └── pipeline.py              # Core execution logic layer
 ├── requirements.txt             # Mandatory dependency version lock file
-└── README.md                    # Repository documentation profilePrerequisites & Installation
-Ensure your target environment possesses a CUDA-compatible NVIDIA graphics card with at least 12 GB of VRAM available[cite: 16].
+└── README.md                    # Repository documentation profile
+```
+## Prerequisites & Installation
+Ensure your target environment possesses a CUDA-compatible NVIDIA graphics card with at least 12 GB of VRAM available.
 
-Clone the project repository infrastructure:
+1.  **Clone the project repository infrastructure:**
+    ```bash
+git clone https://github.com/mlrangathota/secure-local-rag.git
 
-Bash
-git clone [https://github.com/mlrangathota/secure-local-rag.git](https://github.com/mlrangathota/secure-local-rag.git)
-cd secure-local-rag
-Initialize an isolated virtual python environment space:
+2.  **Initialize an isolated virtual python environment space:**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
 
-Bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-Install the precise package dependencies:
+3.  **Install the precise package dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Bash
-pip install -r requirements.txt
-Quick Start Guide
-To execute a rapid validation test run across your sample document collection, execute the pipeline directly via terminal command prompts[cite: 16]:
-
-Bash
+## Quick Start Guide
+To execute a rapid validation test run across your sample document collection, execute the pipeline directly via terminal command prompts:
+```bash
 python src/pipeline.py
-Citation Information
-If you build upon or reference this experimental testing framework in your academic studies, please cite our official conference entry[cite: 16]:
-
-Code snippet
+```
+## Citation Information
+If you build upon or reference this experimental testing framework in your academic studies, please cite our official conference entry:
+```bibtex
 @inproceedings{fruct2026privacypreserving,
   author    = {Mahalakshmi Ranga Prasad Thota},
   title     = {Privacy-Preserving Local Large Language Models for Enterprise Document Analysis},

@@ -1,55 +1,24 @@
-# Privacy-Preserving Local RAG Pipeline for Enterprise Document Analysis
+# Secure Local RAG for Enterprise Document Analysis
 
-This repository contains the core simulation framework and reference implementation for the paper titled "Privacy-Preserving Local Large Language Models for Enterprise Document Analysis" submitted to the 40th FRUCT Conference (Helsinki, Finland, November 4–6, 2026).
+This repository contains the supplementary configuration files, Role-Based Access Control (RBAC) modules, and evaluation scripts for the paper: **"Privacy-Preserving Local Large Language Models for Enterprise Document Analysis"** (Accepted at FRUCT40).
 
-The proposed framework enables completely isolated, high-performance semantic search and text analysis across sensitive corporate documents without relying on external cloud endpoints or public APIs.
+## Repository Contents
 
-## Key Features
-* **Complete Data Isolation:** All operations are executed completely locally inside the on-premise network environment.
-* **8-Bit Model Quantization:** Drastically drops GPU memory parameters using INT8 schemas to run heavy 8B models on ordinary consumer grade graphics hardware.
-* **Deterministic RAG Guardrails:** Enforces explicit context validation to eliminate model hallucinations and generate factual, reference-grounded responses.
+* `secure_rag_pipeline.py`: The core local inference pipeline utilizing 8-bit quantized models and deterministic prompt synthesis.
+* `rbac_enforcement.py` **[NEW]**: The strict Role-Based Access Control execution module. Cryptographically binds user identity tokens to the HNSW vector search to physically prevent unauthorized context retrieval before it reaches the LLM (Addresses prompt injection and internal threat models).
+* `evaluation_pipeline.py` **[NEW]**: The automated scoring protocol (LLM-as-a-judge) used to systematically measure Context Adherence and Hallucination Rates, including the Top-K ablation testing scripts.
+* `requirements.txt`: Python dependencies.
 
-## Project Directory Structure
-```text
-├── data/
-│   └── corporate_vault.json     # Sample configuration data store
-├── src/
-│   ├── __init__.py
-│   └── pipeline.py              # Core execution logic layer
-├── requirements.txt             # Mandatory dependency version lock file
-└── README.md                    # Repository documentation profile
-```
-## Prerequisites & Installation
-Ensure your target environment possesses a CUDA-compatible NVIDIA graphics card with at least 12 GB of VRAM available.
+## Reproducing Empirical Results
+To reproduce the mathematical thresholds mapping hardware optimization to semantic degradation (The INT4 Cliff):
+1. Configure your local environment with an NVIDIA RTX 4090 (or equivalent 24GB VRAM GPU).
+2. Execute the evaluation suite:
+   ```bash
+   python evaluation_pipeline.py
+   ```
 
-1.  **Clone the project repository infrastructure:**
-    ```bash
-git clone https://github.com/mlrangathota/secure-local-rag.git
+## Security & Privacy Guarantee
+By executing this architecture within a zero-trust or air-gapped network, enterprise organizations maintain 100% data sovereignty.
 
-2.  **Initialize an isolated virtual python environment space:**
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
-
-3.  **Install the precise package dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Quick Start Guide
-To execute a rapid validation test run across your sample document collection, execute the pipeline directly via terminal command prompts:
-```bash
-python src/pipeline.py
-```
-## Citation Information
-If you build upon or reference this experimental testing framework in your academic studies, please cite our official conference entry:
-```bibtex
-@inproceedings{fruct2026privacypreserving,
-  author    = {Mahalakshmi Ranga Prasad Thota},
-  title     = {Privacy-Preserving Local Large Language Models for Enterprise Document Analysis},
-  booktitle = {Proceedings of the 40th Conference of the Open Innovations Association FRUCT},
-  year      = {2026},
-  address   = {Helsinki, Finland},
-  month     = {November}
-}
+## Contact
+For questions regarding the architecture or empirical telemetry, please contact Mahalakshmi Ranga Prasad Thota at SAP America, Inc.
